@@ -252,11 +252,11 @@ header.scrolled {
     z-index: 1;
 }
 
-/* After layer is the overlay that gets revealed */
+/* After layer is the overlay that gets revealed on the right */
 .comparison-slider .after-layer {
     z-index: 2;
-    /* Reveal after-layer from the left up to the slider handle */
-    clip-path: polygon(0 0, var(--clip, 50%) 0, var(--clip, 50%) 100%, 0 100%);
+    /* Reveal after-layer from the right side as the slider moves right */
+    clip-path: polygon(var(--clip, 50%) 0, 100% 0, 100% 100%, var(--clip, 50%) 100%);
 }
 
 .comparison-slider .handle {
