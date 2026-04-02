@@ -1,0 +1,606 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Design Tokens - Clinical Atelier */
+    --primary: #003fb1;
+    --primary-container: #1a56db;
+    --on-primary: #ffffff;
+    --secondary: #566068;
+    --secondary-container: #dae4ee;
+    --tertiary: #755b00;
+    --tertiary-container: #c9a84c;
+    --background: #f9f9ff;
+    --surface: #f9f9ff;
+    --surface-container-low: #f1f3ff;
+    --surface-container-lowest: #ffffff;
+    --surface-container-high: #e1e8fd;
+    --on-surface: #141b2b;
+    --on-surface-variant: #434654;
+    --outline-variant: rgba(195, 197, 215, 0.2);
+    
+    --font-heading: 'DM Serif Display', serif;
+    --font-body: 'Inter', sans-serif;
+    
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2.75rem;
+    --spacing-xl: 4rem;
+    --spacing-xxl: 7rem;
+    
+    --radius-sm: 0.25rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+    --radius-full: 9999px;
+    
+    --transition-base: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 1. Base Styles & Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--background);
+    color: var(--on-surface);
+    line-height: 1.6;
+    overflow-x: hidden;
+    opacity: 0;
+    animation: fadeInPage 0.4s ease forwards;
+}
+
+@keyframes fadeInPage {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-base);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* 2. Layout Utility */
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+section {
+    padding: var(--spacing-xxl) 0;
+}
+
+/* 3. Navigation */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: var(--transition-base);
+    padding: var(--spacing-sm) 0;
+}
+
+header.scrolled {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    padding: var(--spacing-xs) 0;
+    box-shadow: 0 4px 30px rgba(0, 63, 177, 0.05);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.nav-links a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    color: var(--on-surface-variant);
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary);
+}
+
+/* 4. Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: radial-gradient(circle at 70% 30%, var(--surface-container-high) 0%, var(--background) 70%);
+    padding-top: 100px;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+}
+
+.hero-content h1 {
+    font-size: 4.5rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--on-surface);
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    color: var(--on-surface-variant);
+    margin-bottom: var(--spacing-xl);
+    max-width: 500px;
+}
+
+.hero-image {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4/5;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 5. Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2.5rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition-base);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
+    color: var(--on-primary);
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 63, 177, 0.15);
+}
+
+.btn-secondary {
+    background: var(--surface-container-high);
+    color: var(--primary);
+}
+
+/* 6. Before/After Section */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+}
+
+.result-card {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--surface-container-lowest);
+    transition: var(--transition-base);
+}
+
+.result-card:hover {
+    transform: scale(1.02);
+}
+
+.comparison-slider {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    user-select: none;
+    background: #000;
+}
+
+.comparison-slider .layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Before layer is the base image */
+.comparison-slider .before-layer {
+    z-index: 1;
+}
+
+/* After layer is the overlay that gets revealed */
+.comparison-slider .after-layer {
+    z-index: 2;
+    /* Reveal after-layer from the left up to the slider handle */
+    clip-path: polygon(0 0, var(--clip, 50%) 0, var(--clip, 50%) 100%, 0 100%);
+}
+
+.comparison-slider .handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--clip, 50%);
+    width: 4px;
+    background: #fff;
+    z-index: 5;
+    transform: translateX(-50%);
+    pointer-events: auto;
+    cursor: ew-resize;
+}
+
+.comparison-slider .handle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    background: var(--primary);
+    border: 4px solid #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.comparison-slider .label {
+    position: absolute;
+    top: 1rem;
+    padding: 0.4rem 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    border-radius: var(--radius-sm);
+    z-index: 10;
+    pointer-events: none;
+}
+
+.comparison-slider .label-antes { left: 1rem; }
+.comparison-slider .label-depois { right: 1rem; }
+
+/* 7. Services Section */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.service-card {
+    background: var(--surface-container-lowest);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    transition: var(--transition-base);
+}
+
+.service-card:hover {
+    background: var(--surface-container-low);
+    transform: translateY(-8px);
+}
+
+.service-card h3 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--primary);
+}
+
+/* 8. About Section */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    align-items: center;
+}
+
+.about-content h2 {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.cro {
+    font-size: 0.875rem;
+    color: var(--tertiary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    margin-bottom: var(--spacing-md);
+    display: block;
+}
+
+/* 9. Testimonials */
+.testimonials-section {
+    background: var(--surface-container-low);
+}
+
+.google-rating {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.testimonial-card {
+    background: var(--surface-container-lowest);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+    font-style: italic;
+    box-shadow: 0 20px 40px rgba(0, 63, 177, 0.04);
+}
+
+/* 10. Contact Section */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--spacing-xl);
+}
+
+.contact-form {
+    background: var(--surface-container-lowest);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--on-surface-variant);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    background: var(--surface-container-low);
+    border-bottom: 2px solid transparent;
+    transition: var(--transition-base);
+    font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-bottom: 2px solid var(--primary);
+}
+
+.contact-info-card {
+    padding: var(--spacing-lg);
+}
+
+.info-item {
+    margin-bottom: var(--spacing-md);
+}
+
+.info-item h4 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    color: var(--primary);
+}
+
+/* 11. Footer */
+footer {
+    background: var(--on-surface);
+    color: #fff;
+    padding: var(--spacing-xl) 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: var(--spacing-md);
+    text-align: center;
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.6);
+}
+
+.footer-bottom a {
+    color: #fff;
+}
+
+/* 12. Floating Controls */
+.whatsapp-btn {
+    position: fixed;
+    bottom: var(--spacing-md);
+    right: var(--spacing-md);
+    background: #25D366;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    z-index: 1001;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+    70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: calc(var(--spacing-md) + 80px);
+    right: var(--spacing-md);
+    background: var(--primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition-base);
+    z-index: 1001;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 13. Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 14. Responsive Improvements (Mobile Overhaul) */
+@media (max-width: 768px) {
+    :root {
+        --spacing-xxl: 5rem;
+        --spacing-xl: 3rem;
+    }
+
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+
+    /* Header Mobile */
+    header {
+        padding: var(--spacing-xs) 0;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+
+    /* Hero Mobile */
+    .hero {
+        padding-top: 100px;
+        text-align: center;
+        min-height: auto;
+        padding-bottom: var(--spacing-xxl);
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+        line-height: 1.1;
+    }
+
+    .hero-content p {
+        font-size: 1.15rem;
+        margin: 0 auto var(--spacing-lg);
+    }
+
+    .hero-actions {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
+
+    /* Comparison Slider Mobile */
+    .comparison-slider {
+        aspect-ratio: 1/1; /* Square on mobile looks more professional */
+        border-radius: var(--radius-md);
+    }
+
+    /* Results Grid */
+    .results-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+
+    /* About Section */
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    .about-content h2 {
+        font-size: 2.75rem;
+    }
+
+    /* Contact Section Mobile */
+    .whatsapp-card {
+        padding: var(--spacing-lg) !important;
+    }
+
+    .whatsapp-card h3 {
+        font-size: 2.25rem;
+    }
+
+    .footer-grid {
+        text-align: center;
+    }
+}
